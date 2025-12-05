@@ -1,28 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-struct Node {
-    int info;
-    struct Node *next;
-};
-
-typedef struct Node Node;
+#include "linkedList.h"
 
 
 /*Funzione che stampa ogni elemento della lista andadno a capo*/
 
-void printList(Node *p) {
+Node* inizialize() {
+    Node *t = (Node*) malloc(sizeof(Node));
+    return t;
+}
+
+void printList(Node *p)
+{
 
     /*Controllo se la lista passata non è vuota*/
 
-    if (p == NULL) {
-        printf("Lista vuota, non ci sono nodi");
+    if (p->next == NULL) {
+        printf("Lista vuota, non ci sono nodi\n");
     } else {
 
         /* Attraverso un nodo temporaneo "scan" scorro tutti
          i nodi stampando la variabile info di ogni nodo*/
         
-        Node *scan = p;
+        Node *scan = p->next;
         do {
 
             printf("%d\n", scan->info);
@@ -32,15 +32,14 @@ void printList(Node *p) {
                                 cioé è arrivato alla fine della lista*/
         
     }
-    
 }
 
 int getSize(Node *p) {
-    if (p == NULL) {
+    if (p->next == NULL) {
         return 0;
     } else {
         int size = 1;
-        Node *scan = p;
+        Node *scan = p->next;
         do
         {
             scan = scan->next;
@@ -53,18 +52,19 @@ int getSize(Node *p) {
 }
 
 
-
-int main() {
-    Node *p = (Node*) malloc(sizeof(Node));
-    p->info= 0;
-
-    Node *p2 = (Node*) malloc(sizeof(Node));
-    p2->info = 10;
-
-    p->next= p2;
-
-    printList(p);
-
-    printf("La lista ha %d elementi\n", getSize(p));
-
+void append(Node *head, int val) {
+    Node *newNode = (Node*) malloc(sizeof(Node));
+    newNode->info = val;
+    newNode->next = NULL;
+    
+    if (head->next == NULL) {
+        head->next = newNode;
+    } else {
+        Node *scan = head->next;
+        while (scan->next != NULL) {
+            scan = scan->next;
+        }
+        scan->next = newNode;
+        
+    }
 }
