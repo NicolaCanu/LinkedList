@@ -3,12 +3,13 @@
 #include "linkedList.h"
 
 
-/*Funzione che stampa ogni elemento della lista andadno a capo*/
 
 Node* inizialize() {
     Node *t = (Node*) malloc(sizeof(Node));
     return t;
 }
+
+/*Funzione che stampa ogni elemento della lista andadno a capo*/
 
 void printList(Node *p)
 {
@@ -66,5 +67,37 @@ void append(Node *head, int val) {
         }
         scan->next = newNode;
         
+    }
+}
+
+
+void pop(Node *p) {
+    if (p == NULL) {
+
+        printf("La lista è vuota\n");
+
+    } else {
+
+        Node *scan =  p;
+        for (int i = 0; i < getSize(p)-1; i++) {
+            scan = scan->next;
+        }
+        scan->next = NULL;
+        
+    }
+}
+
+
+void addHead(Node *p, int val) {
+    Node *newNode = (Node*) malloc(sizeof(Node));
+    newNode->info = val;
+
+    if (p->next == NULL) {
+        p = newNode;
+    } else {
+        Node *temp = (Node*) malloc(sizeof(Node));
+        temp = p->next;
+        p->next = newNode;
+        newNode->next = temp;
     }
 }
