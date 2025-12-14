@@ -20,4 +20,6 @@ void pop(Node *p);
 
 void addHead(Node *p, int val);
 
+Node* getNode(Node* p, int pos);
+
 #endif

@@ -101,3 +101,16 @@ void addHead(Node *p, int val) {
         newNode->next = temp;
     }
 }
+
+Node* getNod(Node* p, int pos) {
+    if (p->next != NULL) {
+        int cnt = 1;
+        Node* scan = p->next;
+        while (cnt < pos) {
+            scan = scan->next;
+        }
+        return scan;
+        
+    }
+    
+}
